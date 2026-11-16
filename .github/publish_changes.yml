@@ -1,0 +1,31 @@
+# Paste this file into `.github/workflows/`
+name: Confluence Change Tracking
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: confluence-changelog
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: [self-hosted, build]
+
+    steps:
+      - name: Publish change history
+        uses: hbhavan-ba/changelog-publisher-dev@v1
+        with:
+          confluence-url: ${{ vars.CONFLUENCE_URL }}
+          confluence-space-id: ${{ vars.CONFLUENCE_SPACE_ID }}
+          confluence-parent-page-id: ${{ vars.CONFLUENCE_PARENT_PAGE_ID }}
+          confluence-email: ${{ secrets.CONFLUENCE_EMAIL }}
+          confluence-api-token: ${{ secrets.CONFLUENCE_API_TOKEN }}
+          github-token: ${{ github.token }}
+          target-branch: main
