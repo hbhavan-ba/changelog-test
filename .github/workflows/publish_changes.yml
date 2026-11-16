@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Publish change history
-        uses: hbhavan-ba/changelog-publisher-dev@v1.1
+        uses: hbhavan-ba/changelog-publisher-dev
         with:
           confluence-url: ${{ vars.CONFLUENCE_URL }}
           confluence-space-id: ${{ vars.CONFLUENCE_SPACE_ID }}
