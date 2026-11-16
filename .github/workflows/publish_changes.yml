@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   publish:
-    runs-on: [self-hosted, build]
+    runs-on: ubuntu-latest
 
     steps:
       - name: Publish change history
