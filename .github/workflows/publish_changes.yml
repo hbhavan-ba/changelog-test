@@ -19,6 +19,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Validate configuration
+        env:
+          CLOUD_ID: ${{ vars.CONFLUENCE_CLOUD_ID }}
+          SPACE_ID: ${{ vars.CONFLUENCE_SPACE_ID }}
+          PARENT_ID: ${{ vars.CONFLUENCE_PARENT_PAGE_ID }}
+          API_TOKEN: ${{ secrets.CONFLUENCE_API_TOKEN }}
+        run: |
+          for name in CLOUD_ID SPACE_ID PARENT_ID API_TOKEN; do
+            if [ -z "${!name}" ]; then
+              echo "::error::$name is missing"
+              exit 1
+            fi
+          done
+          echo "All configuration values are present."
       - name: Publish change history
         uses: hbhavan-ba/changelog-publisher-dev@main
         with:
