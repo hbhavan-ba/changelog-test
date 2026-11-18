@@ -17,6 +17,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: Development
 
     steps:
       - name: Validate configuration
