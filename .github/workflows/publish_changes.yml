@@ -22,7 +22,7 @@ jobs:
       - name: Publish change history
         uses: hbhavan-ba/changelog-publisher-dev@main
         with:
-          confluence-url: ${{ vars.CONFLUENCE_URL }}
+          confluence-cloud-id: ${{ vars.COFNLUECE_CLOUD_ID }}
           confluence-space-id: ${{ vars.CONFLUENCE_SPACE_ID }}
           confluence-parent-page-id: ${{ vars.CONFLUENCE_PARENT_PAGE_ID }}
           confluence-email: ${{ secrets.CONFLUENCE_EMAIL }}
